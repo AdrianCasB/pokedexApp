@@ -7,8 +7,8 @@ import { Component, Input, SimpleChanges } from '@angular/core';
 })
 export class TypeCardComponent {
 
-  @Input() type : string = '';
-  icon: string = '';
+  @Input() type = '';
+  icon = '';
 
  ngOnChanges(changes: SimpleChanges): void {
     if(changes['type'].currentValue){
