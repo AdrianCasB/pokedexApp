@@ -1,25 +1,25 @@
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-type-card',
   templateUrl: './type-card.component.html',
   styleUrls: ['./type-card.component.css']
 })
-export class TypeCardComponent {
+export class TypeCardComponent implements OnChanges {
 
   @Input() type = '';
   icon = '';
 
   ngOnChanges(changes: SimpleChanges): void {
-
-    this.setIcon(changes)
+    const types = changes['type'].currentValue;
+    this.setIcon(types);
   }
 
-  setIcon(changes: SimpleChanges) {
+  private setIcon(type : string): void {
 
-    if (!changes['type'].currentValue) return;
+    if (!type) return;
 
-    switch (changes['type'].currentValue.toLowerCase()) {
+    switch (type.toLowerCase()) {
       case 'fire':
         this.icon = 'local_fire_department'
         break;
