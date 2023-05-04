@@ -1,0 +1,43 @@
+<h1 class="mt-3 ms-3">Pokédex</h1>
+
+<mat-divider></mat-divider>
+<br>
+     <div class="container text-center">
+          <div class="row">
+               <div class="col-3"
+                    *ngFor="let pokemon of pokemons; let i=index">
+
+                    <div >
+                         <mat-card class="example-card mt-3">
+                              <mat-card-header>
+                                   <div mat-card-avatar class="example-header-image"># {{i + 1}}</div>
+                                   <mat-card-title>{{pokemon.name | titlecase}}</mat-card-title>
+                              </mat-card-header>
+                              <img mat-card-image [src]="pokemon.img">
+                              <mat-card-content>
+                                   <p>
+                                        Pokemon desc
+                                   </p>
+                              </mat-card-content>
+
+                              <mat-card-actions align="end">
+                                   <button matTooltip="Información sobre {{pokemon.name | titlecase}}"
+                                           mat-mini-fab color="primary"
+                                           (click)="getPokemon(i+1)">
+                                        <mat-icon>info</mat-icon>
+                                        
+                                      </button>
+                                 </mat-card-actions>
+                              
+                         </mat-card>
+                    </div>
+               </div>
+               <mat-paginator (page)="handlePageEvent($event)"
+                              [length]="length" [pageSizeOptions]="[10, 25, 50]" aria-label="Select page"
+                              class="mt-3">
+               </mat-paginator>
+               
+          </div>
+     </div>
+
+    
