@@ -5,12 +5,14 @@ import { PokemonRoutingModule } from './pokemon-routing.module';
 import { PokeCardComponent } from './components/poke-card/poke-card.component';
 import { PokedexComponent } from './pages/Pokedex/pokedex/pokedex.component';
 import { MaterialModule } from '../material/material.module';
+import { TypeCardComponent } from './components/type-card/type-card.component';
 
 
 @NgModule({
   declarations: [
     PokeCardComponent,
-    PokedexComponent
+    PokedexComponent,
+    TypeCardComponent
   ],
   imports: [
     CommonModule,

@@ -9,6 +9,8 @@ export interface Pokemon {
     name: string;
     url:  string;
     img: string;
+    type: string;
+    id: string;
     pokemon: UniquePokemon
 }
 
