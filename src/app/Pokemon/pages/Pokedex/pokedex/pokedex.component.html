@@ -1,24 +1,25 @@
 
-<img src="https://archives.bulbagarden.net/media/upload/4/4b/Pok%C3%A9dex_logo.png" class="img-fluid" alt="Responsive image">
-
-<br>
-     <div class="container text-center">
+     <div class="container text-center animate__animated animate__fadeIn animate__delay-0.5s">
           <div class="row">
-               <div class="col-12 col-lg-3 col-sm-6"
+               <app-search-bar (eventEmitter)="eventReceiver($event)"></app-search-bar>
+               <div [ngClass]="(isPokemon)? 'col-12 centerDiv' : 'col-12 col-lg-3 col-sm-6'"
+                    
                     *ngFor="let pokemon of pokemons; let i=index">
 
-                    <div >
-                         <mat-card class="example-card mt-3">
-                              <mat-card-header>
+                    <div>
+                         <mat-card class="example-card mt-3"
+                                   [ngClass]="(isPokemon)? 'minicard' : ''">
+                              <mat-card-header [ngClass]="(isPokemon)? 'minicard' : ''">
                                    <div mat-card-avatar class="example-header-image"># {{pokemon.id}}</div>
                                    <mat-card-title>{{pokemon.name | titlecase}}</mat-card-title>
                               </mat-card-header>
-                              <img mat-card-image [src]="pokemon.img">
-                              <mat-card-content>
+                              <img mat-card-image [src]="pokemon.img"
+                                   [ngClass]="(isPokemon)? 'minicard' : ''">
+                              <mat-card-content [ngClass]="(isPokemon)? 'minicard' : ''">
                                    <app-type-card [type]="pokemon.type"></app-type-card>
                               </mat-card-content>
 
-                              <mat-card-actions align="end">
+                              <mat-card-actions align="end" [ngClass]="(isPokemon)? 'minicard' : ''">
                                    <button matTooltip="Información sobre {{pokemon.name | titlecase}}"
                                            mat-mini-fab color="primary"
                                            (click)="getPokemon(i+1)">
@@ -31,7 +32,7 @@
                     </div>
                </div>
                <div class="row">
-                    <div class="col-12 mb-3">
+                    <div class="col-12 mb-3" *ngIf="!isPokemon">
                          <mat-paginator (page)="handlePageEvent($event)"
                                         [length]="length" [pageSizeOptions]="[10, 25, 50]" aria-label="Select page"
                                         class="mt-3">

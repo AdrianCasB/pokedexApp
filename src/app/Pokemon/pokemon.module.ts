@@ -6,13 +6,17 @@ import { PokeCardComponent } from './components/poke-card/poke-card.component';
 import { PokedexComponent } from './pages/Pokedex/pokedex/pokedex.component';
 import { MaterialModule } from '../material/material.module';
 import { TypeCardComponent } from './components/type-card/type-card.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { PokemonInfoComponent } from './pages/pokemon-info/pokemon-info.component';
 
 
 @NgModule({
   declarations: [
     PokeCardComponent,
     PokedexComponent,
-    TypeCardComponent
+    TypeCardComponent,
+    SearchBarComponent,
+    PokemonInfoComponent
   ],
   imports: [
     CommonModule,
