@@ -20,6 +20,8 @@ export class PokedexComponent implements OnInit {
   pokemonImages: Object[] = [];
   pageEvent!: PageEvent;
   isPokemon = false;
+  isFilter = false;
+  
   
 
 
@@ -91,7 +93,7 @@ export class PokedexComponent implements OnInit {
 
 
   eventReceiver(pokemon: UniquePokemon) : void{
-
+    
     if(pokemon === undefined){
       
         this.pokeService.getPokemons().then(pokemons => {
@@ -126,6 +128,13 @@ export class PokedexComponent implements OnInit {
       this.pokemons[0].img = pokemon.sprites.other?.['official-artwork'].front_default || 'No image found';
   
     }
+  }
+
+  eventReceiver2(pokemons : Pokemon[]){
+    this.pokemons = pokemons;
+    this.isFilter = true;
+    this.isPokemon = false;
+    
   }
 
   getPokemon(index: number): void {

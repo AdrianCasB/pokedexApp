@@ -1,7 +1,14 @@
 
      <div class="container text-center animate__animated animate__fadeIn animate__delay-0.5s">
           <div class="row">
-               <app-search-bar (eventEmitter)="eventReceiver($event)"></app-search-bar>
+               <div class="row">
+                    <div class="col">
+                         <app-search-bar (eventEmitter)="eventReceiver($event)"></app-search-bar>
+                         <span class="ms-3 mr-3"></span>
+                         <app-filter-search (eventEmitter)="eventReceiver2($event)"></app-filter-search>
+                    </div>
+               </div>
+               
                <div [ngClass]="(isPokemon)? 'col-12 centerDiv' : 'col-12 col-lg-3 col-sm-6'"
                     
                     *ngFor="let pokemon of pokemons; let i=index">
@@ -32,7 +39,7 @@
                     </div>
                </div>
                <div class="row">
-                    <div class="col-12 mb-3" *ngIf="!isPokemon">
+                    <div class="col-12 mb-3" *ngIf="!isPokemon && !isFilter">
                          <mat-paginator (page)="handlePageEvent($event)"
                                         [length]="length" [pageSizeOptions]="[10, 25, 50]" aria-label="Select page"
                                         class="mt-3">

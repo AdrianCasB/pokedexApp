@@ -1,4 +1,7 @@
 body{
-    background: url('https://assets.pokemon.com/static2/_ui/img/chrome/body_bg.png')
+    background: url('https://assets.pokemon.com/static2/_ui/img/chrome/body_bg.png');
+    margin-top: 20px;
+    margin-bottom: 20px;
 } 
+
 

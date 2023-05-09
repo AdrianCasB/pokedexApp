@@ -12,6 +12,7 @@ export interface Pokemon {
     type: string;
     id: string;
     pokemon: UniquePokemon
+    
 }
 
 export interface UniquePokemon {

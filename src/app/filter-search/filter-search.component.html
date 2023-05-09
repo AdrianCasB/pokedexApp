@@ -1,0 +1,14 @@
+
+        <button matTooltip="Add filter"
+                mat-mini-fab color="primary"
+                [matMenuTriggerFor]="menu">
+                <mat-icon>tune</mat-icon>
+                                                
+        </button>
+        <mat-menu #menu="matMenu" class="ms-5" yPosition="below">
+         <div *ngFor="let type of types">
+             <button mat-menu-item
+                     (click)="searchPokemonsByType(type)">{{type | titlecase}}</button>
+        </div>
+        </mat-menu>
+

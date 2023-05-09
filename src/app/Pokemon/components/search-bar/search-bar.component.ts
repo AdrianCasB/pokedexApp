@@ -15,6 +15,7 @@ export class SearchBarComponent {
 
   buscarPokemon(event: any): void {
     const inputValue = event.target.value.toLowerCase();
+    if(inputValue.trim() == '') return
     event.target.value = '';
     this.pokeService.getPokemonByName(inputValue)
     .then( pokemon => {

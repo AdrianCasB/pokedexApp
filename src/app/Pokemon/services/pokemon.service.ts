@@ -4,16 +4,19 @@ import { environment } from 'environments/environment';
 import { HttpParams } from '@angular/common/http';
 import { Pokemon, Pokemons, UniquePokemon } from '../interfaces/pokemon.interface';
 import { lastValueFrom } from 'rxjs';
+import { Pokemones, TypePokemon } from '../interfaces/type.interface';
 @Injectable({
   providedIn: 'root'
 })
 export class PokemonService {
 
+  pokemons : Pokemon[] = [];
   pokemonFound = false;
   isPokemon = false;
   pokeImages: string[] = [];
   baseUrl: string = environment.apiUrl;
   param: string = 'pokemon';
+  param2: string = 'type'
   limit: number = 0;
   options = {
     params: new HttpParams()
@@ -32,6 +35,7 @@ export class PokemonService {
 
   async getPokemons(): Promise<Pokemon[]> {
 
+    if(this.pokemons.length > 0) return this.pokemons;
     try {
       const { results } = await lastValueFrom(this.httpClient.get<Pokemons>(this.baseUrl + this.param, this.options));
       this.limit = +this.options.params.get('limit')!;
@@ -78,6 +82,19 @@ export class PokemonService {
   }
 
 
+
+  async getPokemonsByType(type: string): Promise<Pokemones[]> {
+
+    try {
+      const { pokemon } = await lastValueFrom(this.httpClient.get<TypePokemon>(this.baseUrl+this.param2+`/${type}`));
+      return pokemon;
+    } catch (error) {
+      this.isPokemon = false;
+      throw new Error('No pokemons founded');
+    }
+  }
+
+
   set pokemonAvailable(confirm: boolean) {
     this.isPokemon = confirm;
     this.pokemonFound = confirm;
@@ -87,6 +104,9 @@ export class PokemonService {
     return this.pokemonFound;
   }
 
-
+  set pokemonsByFilter(pokemons: Pokemon[]){
+    this.pokemons = pokemons;
+  }
+  
 
 }
