@@ -10,6 +10,7 @@ import { Pokemones, TypePokemon } from '../interfaces/type.interface';
 })
 export class PokemonService {
 
+  filterEnable = false;
   pokemons : Pokemon[] = [];
   pokemonFound = false;
   isPokemon = false;
@@ -35,7 +36,7 @@ export class PokemonService {
 
   async getPokemons(): Promise<Pokemon[]> {
 
-    if(this.pokemons.length > 0) return this.pokemons;
+    if(this.filterEnable) return this.pokemons;
     try {
       const { results } = await lastValueFrom(this.httpClient.get<Pokemons>(this.baseUrl + this.param, this.options));
       this.limit = +this.options.params.get('limit')!;
@@ -84,7 +85,7 @@ export class PokemonService {
 
 
   async getPokemonsByType(type: string): Promise<Pokemones[]> {
-
+   
     try {
       const { pokemon } = await lastValueFrom(this.httpClient.get<TypePokemon>(this.baseUrl+this.param2+`/${type}`));
       return pokemon;
@@ -101,11 +102,15 @@ export class PokemonService {
   }
 
   get pokemonFounded(): boolean {
-    return this.pokemonFound;
+   return this.pokemonFound;
   }
 
   set pokemonsByFilter(pokemons: Pokemon[]){
     this.pokemons = pokemons;
+  }
+
+  set isFilterEnable(confirm: boolean){
+    this.filterEnable = confirm;
   }
   
 

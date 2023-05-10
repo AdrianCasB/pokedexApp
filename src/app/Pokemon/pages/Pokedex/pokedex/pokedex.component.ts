@@ -3,6 +3,8 @@ import { Pokemon, UniquePokemon } from 'src/app/Pokemon/interfaces/pokemon.inter
 import { PokemonService } from '../../../services/pokemon.service';
 import { PageEvent } from '@angular/material/paginator';
 import { HttpParams } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { environment } from 'environments/environment';
 
 @Component({
   templateUrl: './pokedex.component.html',
@@ -10,7 +12,7 @@ import { HttpParams } from '@angular/common/http';
 })
 export class PokedexComponent implements OnInit {
   
-  constructor(private pokeService: PokemonService) { }
+  constructor(private pokeService: PokemonService, private router : Router) { }
   
   pokemons: Pokemon[] = [];
   length = 1500;
@@ -126,19 +128,22 @@ export class PokedexComponent implements OnInit {
       this.pokemons[0].name = pokemon.name;
       this.pokemons[0].type = pokemon.types[0].type.name;
       this.pokemons[0].img = pokemon.sprites.other?.['official-artwork'].front_default || 'No image found';
+      this.pokemons[0].url = environment.apiUrl+"/pokemon/"+this.pokemons[0].id;
   
     }
   }
 
   eventReceiver2(pokemons : Pokemon[]){
     this.pokemons = pokemons;
-    this.isFilter = true;
+    this.isFilter = this.pokeService.filterEnable;
     this.isPokemon = false;
     
   }
 
-  getPokemon(index: number): void {
-    console.log(index);
+  getPokemon(url: string): void {
+    const id = url.split('/').filter(e => e).slice(-1)[0];
+    this.router.navigate(['pokemon/'+id]);
+    console.log(id);
   }
 
 

@@ -29,7 +29,7 @@
                               <mat-card-actions align="end" [ngClass]="(isPokemon)? 'minicard' : ''">
                                    <button matTooltip="Información sobre {{pokemon.name | titlecase}}"
                                            mat-mini-fab color="primary"
-                                           (click)="getPokemon(i+1)">
+                                           (click)="getPokemon(pokemon.url)">
                                         <mat-icon>catching_pokemon</mat-icon>
                                         
                                       </button>

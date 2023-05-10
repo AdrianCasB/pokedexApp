@@ -1,1 +1,33 @@
-<p>poke-card works!</p>
+<div class="container">
+  <ng-container *ngIf="pokemon; else elseTemplate">
+
+    <div class="content">
+
+    <mat-card class="example-card mt-3">
+<mat-card-header>
+    <div mat-card-avatar class="example-header-image"># {{pokemon.id}}</div>
+    <mat-card-title>{{pokemon.name | titlecase}}</mat-card-title>
+</mat-card-header>
+<div class="row">
+<img mat-card-image [src]="pokemon.sprites.front_default">
+<img mat-card-image [src]="pokemon.sprites.back_default">
+</div>
+<mat-card-content *ngFor="let type of pokemon.types">
+  <app-type-card [type]="type.type.name"></app-type-card>    
+    <span class="mr-3 ms-3"></span>
+</mat-card-content>
+</mat-card>
+
+
+</div>
+
+
+
+
+  </ng-container>
+  <ng-template #elseTemplate id="template">
+    <div class="alert alert-primary mt-5" role="alert">
+      Pokemon not found
+    </div>
+  </ng-template>
+</div>

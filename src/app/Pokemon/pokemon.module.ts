@@ -8,7 +8,7 @@ import { MaterialModule } from '../material/material.module';
 import { TypeCardComponent } from './components/type-card/type-card.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { PokemonInfoComponent } from './pages/pokemon-info/pokemon-info.component';
-import { FilterSearchComponent } from '../filter-search/filter-search.component';
+import { FilterSearchComponent } from './components/filter-search/filter-search.component';
 
 
 
