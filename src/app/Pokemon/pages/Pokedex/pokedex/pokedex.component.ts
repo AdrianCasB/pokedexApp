@@ -123,12 +123,14 @@ export class PokedexComponent implements OnInit {
     
     }else{
       this.isPokemon = true;
-      this.pokemons.splice(1,this.pokemons.length-1);
-      this.pokemons[0].id = pokemon.id.toString();
-      this.pokemons[0].name = pokemon.name;
-      this.pokemons[0].type = pokemon.types[0].type.name;
-      this.pokemons[0].img = pokemon.sprites.other?.['official-artwork'].front_default || 'No image found';
-      this.pokemons[0].url = environment.apiUrl+"/pokemon/"+this.pokemons[0].id;
+      const id = pokemon.id;
+      this.router.navigate(['pokemon/'+id]);
+      // this.pokemons.splice(1,this.pokemons.length-1);
+      // this.pokemons[0].id = pokemon.id.toString();
+      // this.pokemons[0].name = pokemon.name;
+      // this.pokemons[0].type = pokemon.types[0].type.name;
+      // this.pokemons[0].img = pokemon.sprites.other?.['official-artwork'].front_default || 'No image found';
+      // this.pokemons[0].url = environment.apiUrl+"/pokemon/"+this.pokemons[0].id;
   
     }
   }

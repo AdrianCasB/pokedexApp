@@ -5,3 +5,7 @@
     text-align: center;
     justify-content: center;
 }
+
+img{
+    cursor: pointer;
+}

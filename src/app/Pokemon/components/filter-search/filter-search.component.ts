@@ -70,7 +70,6 @@ export class FilterSearchComponent {
             });
           });
         });
-
         this.eventEmitter.emit(this.pokemonList);
         this.pokeService.pokemonsByFilter = this.pokemonList;
       });
